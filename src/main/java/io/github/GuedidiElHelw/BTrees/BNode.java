@@ -1,34 +1,39 @@
 package io.github.GuedidiElHelw.BTrees;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class BNode {
 	private int m;
 	private int n;	// Number of keys
-	private int[] keys;
-    private BNode[] bNodes;
+	private ArrayList<Integer> keys;
+    private ArrayList<BNode> bNodes;
     private BNode parent;
     private boolean isLeaf;
  
     public BNode(int m, boolean leaf) {
         this.m = m;
         this.n = 0;
-        this.keys = new int[m- 1];
-        this.bNodes = new BNode[m];
+        this.keys = new ArrayList<>();
+        this.bNodes = new ArrayList<>();
         this.parent = null;
         this.isLeaf = leaf;
     }
+    
+    public BNode(int m, int n, ArrayList<Integer> keys, ArrayList<BNode> bNodes, )
  
     public void printBTree() {
         int i = 0;
         for (i = 0; i < this.n; i++) {
             if (this.isLeaf == false) {
-                bNodes[i].printBTree();
+                bNodes.get(i).printBTree();
             }
-            System.out.print(keys[i] + " ");
+            System.out.print(keys.get(i) + " ");
         }
         if (isLeaf == false)
-            bNodes[i].printBTree();
+            bNodes.get(i).printBTree();
     }
  
     
@@ -45,53 +50,44 @@ public class BNode {
     public IsFoundBNode search(int k) {
  
         int i = 0;
-        while (i < n && k > keys[i])
-            i++;
+        while (i < n && k > keys.get(i)) {
+        	i++;
+        }
  
-        if (keys[i] == k)
+        if (keys.get(i) == k)
             return new IsFoundBNode(this, true);
  
         if (isLeaf == true)
             return new IsFoundBNode(this, false);
  
-        return bNodes[i].search(k);
+        return bNodes.get(i).search(k);
  
     }
     
     public void split(int k) {
     	
-    	// Temporary keys :
-    	int[] temp = new int[m];
-    	for (int i=0; i<n; i++) {
-    		temp[i] = keys[i];
-    	}
-    	temp[n] = k;
-    	Arrays.sort(temp);
+    	keys.add(k);
+    	Collections.sort(keys);
     	
-    	// Inserting median in parent node :
-    	int medianK = temp[m/2];
-    	int n2 = parent.getN();
-    	int[] keys2 = parent.getKeys();
-    	if (n2 < m-1) {
-    		keys[n2] = medianK;
-    		n2++;
-    		Arrays.sort(keys2);
-    	}
+    	// Second half :
+    	List<Integer> temp = keys.subList(m/2+1, keys.size());
     	
-    	// Updating list of keys :
-    	int j = m/2 ;
-    	while (j<m-1) {
-    		temp[j] = temp[j+1];
-    	}
-    	keys = temp;
+    	// Insertion in parent :
+    	int medianK = keys.remove(m/2);
+    	parent.keys.add(medianK);
+    	Collections.sort(parent.keys);
+    	parent.bNodes.add(parent.keys.indexOf(medianK)+1, new BNode(temp, m);
+    	
+    	// First half :
+    	keys.removeAll(temp);
     	
     }
     
-    public BNode[] getbNodes() {
+    public ArrayList<BNode> getbNodes() {
 		return bNodes;
 	}
     
-    public int[] getKeys() {
+    public ArrayList<Integer> getKeys() {
 		return keys;
 	}
     
@@ -107,11 +103,11 @@ public class BNode {
 		return parent;
 	}
     
-    public void setbNodes(BNode[] bNodes) {
+    public void setbNodes(ArrayList<BNode> bNodes) {
 		this.bNodes = bNodes;
 	}
     
-    public void setKeys(int[] keys) {
+    public void setKeys(ArrayList<Integer> keys) {
 		this.keys = keys;
 	}
     
