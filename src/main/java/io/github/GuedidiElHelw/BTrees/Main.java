@@ -3,6 +3,8 @@ package io.github.GuedidiElHelw.BTrees;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import io.github.GuedidiElHelw.BTrees.BNode.IsFoundBNode;
+
 public class Main {
 
 	public static BTree buildBTree() {
@@ -68,13 +70,24 @@ public class Main {
 		
 		// Searching for key 55 :
 		int k = 55;
-		BNode bNode1 = bTree.search(k).bn;
-		System.out.println(bNode1.getKeys());
+		IsFoundBNode ifbn = bTree.search(k);
+		System.out.println(ifbn.isFound ? ifbn.bn.getKeys() : "Absent");
 		
 		// Searching for key 35 :
 		k = 35;
-		BNode bNode2 = bTree.search(k).bn;
-		System.out.println(bNode2.getKeys());
+		ifbn = bTree.search(k);
+		System.out.println(ifbn.isFound ? ifbn.bn.getKeys() : "Absent");
+		
+		// Searching for key 66 :
+		k = 66;
+		ifbn = bTree.search(k);
+		System.out.println(ifbn.isFound ? ifbn.bn.getKeys() : "Absent");
+		
+		// Searching for absent key 91 :
+		k = 91;
+		ifbn = bTree.search(k);
+		System.out.println(ifbn.isFound ? ifbn.bn.getKeys() : "Absent");
+		
 
 	}
 
