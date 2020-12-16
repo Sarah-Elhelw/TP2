@@ -6,20 +6,21 @@ import java.util.Arrays;
 import io.github.GuedidiElHelw.BTrees.BNode.IsFoundBNode;
 
 public class Main {
+	
 
 	public static BTree buildBTree() {
 		int m = 5;
 		BTree bTree = new BTree(m);
 		
-		BNode bNode1 = new BNode(m, false);
-		BNode bNode2 = new BNode(m, false);
-		BNode bNode3 = new BNode(m, false);
-		BNode bNode4 = new BNode(m, true);
-		BNode bNode5 = new BNode(m, true);
-		BNode bNode6 = new BNode(m, true);
-		BNode bNode7 = new BNode(m, true);
-		BNode bNode8 = new BNode(m, true);
-		BNode bNode9 = new BNode(m, true);
+		BNode bNode1 = new BNode(m, false,bTree);
+		BNode bNode2 = new BNode(m, false,bTree);
+		BNode bNode3 = new BNode(m, false,bTree);
+		BNode bNode4 = new BNode(m, true,bTree);
+		BNode bNode5 = new BNode(m, true,bTree);
+		BNode bNode6 = new BNode(m, true,bTree);
+		BNode bNode7 = new BNode(m, true,bTree);
+		BNode bNode8 = new BNode(m, true,bTree);
+		BNode bNode9 = new BNode(m, true,bTree);
 		
 		bNode1.setKeys(new ArrayList<>(Arrays.asList(46)));
 		bNode1.setN(1);
@@ -93,6 +94,28 @@ public class Main {
 		testSearch(35);
 		testSearch(66);
 		testSearch(91);*/
+		System.out.println("--------");
+		BTree bTree2 = new BTree(3);
+		bTree2.insert(1);
+		bTree2.printBTree();
+		bTree2.insert(2);
+		bTree2.printBTree();
+		bTree2.insert(3);
+		bTree2.printBTree();
+		bTree2.insert(4);
+		bTree2.printBTree();
+		bTree2.insert(5);
+		bTree2.printBTree();
+		/*bTree2.insert(6);
+		
+		bTree2.insert(7);
+		bTree2.insert(8);
+		bTree2.insert(9);
+		bTree2.insert(10);
+		bTree2.insert(11);
+		bTree2.printBTree();*/
+		
+		
 
 	}
 

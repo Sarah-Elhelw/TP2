@@ -26,7 +26,7 @@ public class BTree {
 
 	public boolean insert(int k) { // return false if k is in the tree
 		if (root == null) {
-			root = new BNode(m, true);
+			root = new BNode(m, true,this);
 		}
 
 		return root.insert(k);

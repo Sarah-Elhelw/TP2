@@ -10,14 +10,16 @@ public class BNode {
 	private ArrayList<BNode> bNodes;
 	private BNode parent;
 	private boolean isLeaf;
+	BTree bTree;
 
-	public BNode(int m, boolean leaf) {
+	public BNode(int m, boolean leaf,BTree bTree) {
 		this.m = m;
 		this.n = 0;
 		this.keys = new ArrayList<>();
 		this.bNodes = new ArrayList<>();
 		this.parent = null;
 		this.isLeaf = leaf;
+		this.bTree=bTree;
 	}
 
 	public void printBTree() {
@@ -68,6 +70,7 @@ public class BNode {
 		}
 
 		BNode bn = ifbn.bn; // leaf where k should be inserted if not found
+		if(this.keys.size()>0) {System.out.println("insert in: " + this.keys.get(0));}
 		int n = bn.getN();
 		ArrayList<Integer> keys = bn.getKeys();
 
@@ -96,17 +99,26 @@ public class BNode {
 		
 
 		// New node
-		BNode newBNode = new BNode(m, isLeaf);
+		BNode newBNode = new BNode(m, isLeaf,bTree);
 		newBNode.keys = temp;
 		newBNode.n = temp.size();
 		newBNode.parent=this.parent;
 		if(!isLeaf) {
 		newBNode.bNodes = new ArrayList<>(bNodes.subList(m / 2 + 1, bNodes.size()));}
+		
+		if(parent== null) {
+			parent=new BNode(m, false,bTree);
+			parent.bNodes.add(this);
+			if(bNodes.size()!=0) {
+			newBNode.bNodes = new ArrayList<>(bNodes.subList(m / 2 + 1, bNodes.size()));}
+			bTree.setRoot(parent);
+		}
 
 		// Insertion in parent :
 		int medianK = keys.remove(m / 2);
 		parent.keys.add(medianK);
 		Collections.sort(parent.keys);
+		
 		int bNodeIndexOfInseretion=parent.keys.indexOf(medianK)+1;
 		parent.bNodes.add(bNodeIndexOfInseretion,newBNode);
 		parent.n=parent.keys.size();
@@ -116,6 +128,7 @@ public class BNode {
 		keys.removeAll(temp);
 		n=keys.size();
 		if (parent.n>m-1) {
+		System.out.println("aaaaa");
 		medianK = parent.keys.remove(m / 2);
 		parent.split(medianK);
 		}
