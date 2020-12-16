@@ -112,5 +112,20 @@ public class BNode {
 	public int getN() {
 		return n;
 	}
-
+	
+	public void setbNodes(ArrayList<BNode> bNodes) {
+		this.bNodes = bNodes;
+	}
+	
+	public void setKeys(ArrayList<Integer> keys) {
+		this.keys = keys;
+	}
+	
+	public void setN(int n) {
+		this.n = n;
+	}
+	
+	public void setParent(BNode parent) {
+		this.parent = parent;
+	}
 }

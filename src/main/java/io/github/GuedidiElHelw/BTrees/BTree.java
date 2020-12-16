@@ -39,5 +39,9 @@ public class BTree {
 	public BNode getRoot() {
 		return root;
 	}
+	
+	public void setRoot(BNode root) {
+		this.root = root;
+	}
 
 }
