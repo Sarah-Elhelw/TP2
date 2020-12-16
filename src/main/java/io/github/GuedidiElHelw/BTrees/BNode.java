@@ -94,15 +94,22 @@ public class BNode {
 		// New node
 		BNode newBNode = new BNode(m, isLeaf);
 		newBNode.keys = temp;
+		newBNode.n = temp.size()+1;
+		newBNode.bNodes = new ArrayList<>(bNodes.subList(m / 2 + 1, keys.size()));
 
 		// Insertion in parent :
 		int medianK = keys.remove(m / 2);
-		parent.insert(medianK);
+		parent.keys.add(medianK);
+		Collections.sort(parent.keys);
 		parent.bNodes.add(newBNode);
 
 		// First half :
 		keys.removeAll(temp);
 
+	}
+	
+	public static void sortBNodes(BNode bNode) {
+		public static WrappedKey
 	}
 
 	public ArrayList<Integer> getKeys() {
