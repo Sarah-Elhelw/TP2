@@ -81,6 +81,14 @@ public class Main {
 		BTree bTree = buildBTree();
 		bTree.insert(70);
 		bTree.printBTree();
+		bTree.insert(96);
+		bTree.printBTree();
+		bTree.insert(97);
+		bTree.printBTree();
+		bTree.insert(98);
+		bTree.printBTree();
+		bTree.insert(99);
+		bTree.printBTree();
 		/*testSearch(55);
 		testSearch(35);
 		testSearch(66);

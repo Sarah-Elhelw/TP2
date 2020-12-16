@@ -75,6 +75,7 @@ public class BNode {
 		if (n < m - 1) {
 			keys.add(k);
 			Collections.sort(keys);
+			bn.n++;
 			return true;
 		}
 
@@ -98,6 +99,7 @@ public class BNode {
 		BNode newBNode = new BNode(m, isLeaf);
 		newBNode.keys = temp;
 		newBNode.n = temp.size();
+		newBNode.parent=this.parent;
 		if(!isLeaf) {
 		newBNode.bNodes = new ArrayList<>(bNodes.subList(m / 2 + 1, bNodes.size()));}
 
@@ -113,6 +115,10 @@ public class BNode {
 		// First half :
 		keys.removeAll(temp);
 		n=keys.size();
+		if (parent.n>m-1) {
+		medianK = parent.keys.remove(m / 2);
+		parent.split(medianK);
+		}
 
 	}
 	
