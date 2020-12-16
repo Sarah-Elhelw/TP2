@@ -64,30 +64,25 @@ public class Main {
 		return bTree;
 	}
 	
-	public static void main(String[] args) {
+	public static void testPrintBTree() {
 		BTree bTree = buildBTree();
 		bTree.printBTree();
-		
-		// Searching for key 55 :
-		int k = 55;
+	}
+	
+	public static void testSearch(int k) {
+		BTree bTree = buildBTree();
 		IsFoundBNode ifbn = bTree.search(k);
 		System.out.println(ifbn.isFound ? ifbn.bn.getKeys() : "Absent");
+	}
+	
+	public static void main(String[] args) {
 		
-		// Searching for key 35 :
-		k = 35;
-		ifbn = bTree.search(k);
-		System.out.println(ifbn.isFound ? ifbn.bn.getKeys() : "Absent");
+		testPrintBTree();
 		
-		// Searching for key 66 :
-		k = 66;
-		ifbn = bTree.search(k);
-		System.out.println(ifbn.isFound ? ifbn.bn.getKeys() : "Absent");
-		
-		// Searching for absent key 91 :
-		k = 91;
-		ifbn = bTree.search(k);
-		System.out.println(ifbn.isFound ? ifbn.bn.getKeys() : "Absent");
-		
+		testSearch(55);
+		testSearch(35);
+		testSearch(66);
+		testSearch(91);
 
 	}
 
