@@ -78,11 +78,13 @@ public class Main {
 	public static void main(String[] args) {
 		
 		testPrintBTree();
-		
-		testSearch(55);
+		BTree bTree = buildBTree();
+		bTree.insert(70);
+		bTree.printBTree();
+		/*testSearch(55);
 		testSearch(35);
 		testSearch(66);
-		testSearch(91);
+		testSearch(91);*/
 
 	}
 

@@ -78,6 +78,7 @@ public class BNode {
 			return true;
 		}
 
+
 		// Case 3 : A split is needed
 		bn.split(k);
 		return true;
@@ -87,30 +88,35 @@ public class BNode {
 
 		keys.add(k);
 		Collections.sort(keys);
-
+		
+		
 		// Second half :
 		ArrayList<Integer> temp = new ArrayList<>(keys.subList(m / 2 + 1, keys.size()));
+		
 
 		// New node
 		BNode newBNode = new BNode(m, isLeaf);
 		newBNode.keys = temp;
-		newBNode.n = temp.size()+1;
-		newBNode.bNodes = new ArrayList<>(bNodes.subList(m / 2 + 1, keys.size()));
+		newBNode.n = temp.size();
+		if(!isLeaf) {
+		newBNode.bNodes = new ArrayList<>(bNodes.subList(m / 2 + 1, bNodes.size()));}
 
 		// Insertion in parent :
 		int medianK = keys.remove(m / 2);
 		parent.keys.add(medianK);
 		Collections.sort(parent.keys);
-		parent.bNodes.add(newBNode);
+		int bNodeIndexOfInseretion=parent.keys.indexOf(medianK)+1;
+		parent.bNodes.add(bNodeIndexOfInseretion,newBNode);
+		parent.n=parent.keys.size();
+
 
 		// First half :
 		keys.removeAll(temp);
+		n=keys.size();
 
 	}
 	
-	public static void sortBNodes(BNode bNode) {
-		public static WrappedKey
-	}
+
 
 	public ArrayList<Integer> getKeys() {
 		return keys;
