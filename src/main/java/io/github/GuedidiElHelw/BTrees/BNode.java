@@ -70,7 +70,6 @@ public class BNode {
 		}
 
 		BNode bn = ifbn.bn; // leaf where k should be inserted if not found
-		if(this.keys.size()>0) {System.out.println("insert in: " + this.keys.get(0));}
 		int n = bn.getN();
 		ArrayList<Integer> keys = bn.getKeys();
 
@@ -97,7 +96,12 @@ public class BNode {
 		// Second half :
 		ArrayList<Integer> temp = new ArrayList<>(keys.subList(m / 2 + 1, keys.size()));
 		
-
+		if(parent== null) {
+			parent=new BNode(m, false,bTree);
+			parent.bNodes.add(this);
+			bTree.setRoot(parent);
+		}
+		
 		// New node
 		BNode newBNode = new BNode(m, isLeaf,bTree);
 		newBNode.keys = temp;
@@ -106,13 +110,7 @@ public class BNode {
 		if(!isLeaf) {
 		newBNode.bNodes = new ArrayList<>(bNodes.subList(m / 2 + 1, bNodes.size()));}
 		
-		if(parent== null) {
-			parent=new BNode(m, false,bTree);
-			parent.bNodes.add(this);
-			if(bNodes.size()!=0) {
-			newBNode.bNodes = new ArrayList<>(bNodes.subList(m / 2 + 1, bNodes.size()));}
-			bTree.setRoot(parent);
-		}
+
 
 		// Insertion in parent :
 		int medianK = keys.remove(m / 2);
@@ -128,7 +126,6 @@ public class BNode {
 		keys.removeAll(temp);
 		n=keys.size();
 		if (parent.n>m-1) {
-		System.out.println("aaaaa");
 		medianK = parent.keys.remove(m / 2);
 		parent.split(medianK);
 		}

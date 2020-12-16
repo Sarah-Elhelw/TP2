@@ -106,14 +106,18 @@ public class Main {
 		bTree2.printBTree();
 		bTree2.insert(5);
 		bTree2.printBTree();
-		/*bTree2.insert(6);
-		
+		bTree2.insert(6);
+		bTree2.printBTree();
 		bTree2.insert(7);
+		bTree2.printBTree();
 		bTree2.insert(8);
+		bTree2.printBTree();
 		bTree2.insert(9);
+		bTree2.printBTree();
 		bTree2.insert(10);
+		bTree2.printBTree();
 		bTree2.insert(11);
-		bTree2.printBTree();*/
+		bTree2.printBTree();
 		
 		
 
