@@ -65,6 +65,16 @@ public class Main {
 	public static void main(String[] args) {
 		BTree bTree = buildBTree();
 		bTree.printBTree();
+		
+		// Searching for key 55 :
+		int k = 55;
+		BNode bNode1 = bTree.search(k).bn;
+		System.out.println(bNode1.getKeys());
+		
+		// Searching for key 35 :
+		k = 35;
+		BNode bNode2 = bTree.search(k).bn;
+		System.out.println(bNode2.getKeys());
 
 	}
 

@@ -49,7 +49,7 @@ public class BNode {
 			i++;
 		}
 
-		if (keys.get(i) == k)
+		if (i!=n && keys.get(i) == k)
 			return new IsFoundBNode(this, true);
 
 		if (isLeaf == true)
