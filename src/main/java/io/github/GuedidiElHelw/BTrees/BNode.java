@@ -122,7 +122,7 @@ public class BNode {
 		keys.removeAll(temp);
 		
 		// A split is also needed in the parent :
-		if (parent.keys.size() > m - 1) {
+		if (parent.keys.size() > m-1) {
 			medianK = parent.keys.remove(m / 2);
 			parent.split(medianK);
 		}
