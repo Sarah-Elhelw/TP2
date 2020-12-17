@@ -6,79 +6,83 @@ import java.util.Arrays;
 import io.github.GuedidiElHelw.BTrees.BNode.IsFoundBNode;
 
 public class Main {
-	
 
+	/**
+	 * This method creates, manually, a tree similar to the one in the DBMS course.
+	 * 
+	 * @return the Btree created
+	 */
 	public static BTree buildBTree() {
 		int m = 5;
 		BTree bTree = new BTree(m);
-		
-		BNode bNode1 = new BNode(m, false,bTree);
-		BNode bNode2 = new BNode(m, false,bTree);
-		BNode bNode3 = new BNode(m, false,bTree);
-		BNode bNode4 = new BNode(m, true,bTree);
-		BNode bNode5 = new BNode(m, true,bTree);
-		BNode bNode6 = new BNode(m, true,bTree);
-		BNode bNode7 = new BNode(m, true,bTree);
-		BNode bNode8 = new BNode(m, true,bTree);
-		BNode bNode9 = new BNode(m, true,bTree);
-		
+
+		BNode bNode1 = new BNode(m, false, bTree);
+		BNode bNode2 = new BNode(m, false, bTree);
+		BNode bNode3 = new BNode(m, false, bTree);
+		BNode bNode4 = new BNode(m, true, bTree);
+		BNode bNode5 = new BNode(m, true, bTree);
+		BNode bNode6 = new BNode(m, true, bTree);
+		BNode bNode7 = new BNode(m, true, bTree);
+		BNode bNode8 = new BNode(m, true, bTree);
+		BNode bNode9 = new BNode(m, true, bTree);
+
 		bNode1.setKeys(new ArrayList<>(Arrays.asList(46)));
-		bNode1.setN(1);
 		bNode1.setbNodes(new ArrayList<>(Arrays.asList(bNode2, bNode3)));
-		
+
 		bNode2.setKeys(new ArrayList<>(Arrays.asList(27, 37)));
-		bNode2.setN(2);
 		bNode2.setbNodes(new ArrayList<>(Arrays.asList(bNode4, bNode5, bNode6)));
 		bNode2.setParent(bNode1);
-		
+
 		bNode3.setKeys(new ArrayList<>(Arrays.asList(66, 79)));
-		bNode3.setN(2);
 		bNode3.setbNodes(new ArrayList<>(Arrays.asList(bNode7, bNode8, bNode9)));
 		bNode3.setParent(bNode1);
-		
+
 		bNode4.setKeys(new ArrayList<>(Arrays.asList(10, 15, 20, 25)));
-		bNode4.setN(4);
 		bNode4.setParent(bNode2);
-		
+
 		bNode5.setKeys(new ArrayList<>(Arrays.asList(30, 35)));
-		bNode5.setN(2);
 		bNode5.setParent(bNode2);
-		
+
 		bNode6.setKeys(new ArrayList<>(Arrays.asList(40, 45)));
-		bNode6.setN(2);
 		bNode6.setParent(bNode2);
-		
+
 		bNode7.setKeys(new ArrayList<>(Arrays.asList(50, 55, 60, 65)));
-		bNode7.setN(4);
 		bNode7.setParent(bNode3);
-		
+
 		bNode8.setKeys(new ArrayList<>(Arrays.asList(68, 71, 74, 78)));
-		bNode8.setN(4);
 		bNode8.setParent(bNode3);
-		
+
 		bNode9.setKeys(new ArrayList<>(Arrays.asList(81, 85, 90, 95)));
-		bNode9.setN(4);
 		bNode9.setParent(bNode3);
-		
+
 		bTree.setRoot(bNode1);
-		
+
 		return bTree;
 	}
-	
+
 	public static void testPrintBTree() {
 		BTree bTree = buildBTree();
 		bTree.printBTree();
 	}
-	
+
 	public static void testSearch(int k) {
 		BTree bTree = buildBTree();
 		IsFoundBNode ifbn = bTree.search(k);
 		System.out.println(ifbn.isFound ? ifbn.bn.getKeys() : "Absent");
 	}
-	
+
 	public static void main(String[] args) {
-		
+
+		System.out.println("---------TESTING PRINTING OF THE TREE---------\n");
 		testPrintBTree();
+		
+		System.out.println("\n---------TESTING SEARCH---------\n");
+		testSearch(55); 
+		testSearch(35); 
+		testSearch(66); 
+		testSearch(91);
+		
+		System.out.println("\n---------TESTING INSERTION---------\n");
 		BTree bTree = buildBTree();
 		bTree.insert(70);
 		bTree.printBTree();
@@ -90,11 +94,8 @@ public class Main {
 		bTree.printBTree();
 		bTree.insert(99);
 		bTree.printBTree();
-		/*testSearch(55);
-		testSearch(35);
-		testSearch(66);
-		testSearch(91);*/
-		System.out.println("--------");
+		
+		System.out.println("\n---------TESTING CREATION OF A BTREE WITH INSERTION---------\n");
 		BTree bTree2 = new BTree(3);
 		bTree2.insert(1);
 		bTree2.printBTree();
@@ -112,14 +113,6 @@ public class Main {
 		bTree2.printBTree();
 		bTree2.insert(8);
 		bTree2.printBTree();
-		bTree2.insert(9);
-		bTree2.printBTree();
-		bTree2.insert(10);
-		bTree2.printBTree();
-		bTree2.insert(11);
-		bTree2.printBTree();
-		
-		
 
 	}
 

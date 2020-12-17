@@ -24,9 +24,15 @@ public class BTree {
 			return root.search(k);
 	}
 
-	public boolean insert(int k) { // return false if k is in the tree
+	/**
+	 * Inserts the key k in the BTree.
+	 * 
+	 * @param k
+	 * @return true if k was inserted and false if k already exists.
+	 */
+	public boolean insert(int k) {
 		if (root == null) {
-			root = new BNode(m, true,this);
+			root = new BNode(m, true, this);
 		}
 
 		return root.insert(k);
@@ -39,7 +45,7 @@ public class BTree {
 	public BNode getRoot() {
 		return root;
 	}
-	
+
 	public void setRoot(BNode root) {
 		this.root = root;
 	}
